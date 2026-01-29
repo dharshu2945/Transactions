@@ -1,0 +1,29 @@
+CREATE TABLE ACCOUNT_TBL(
+        Account_Number VARCHAR2(10),
+        Customer_Name VARCHAR2(15),
+        Balance NUMBER(10,2)
+        );
+ INSERT INTO ACCOUNT_TBL(Account_Number,Customer_Name,Balance)
+ VALUES('1234567890','Reddy',80000);
+ INSERT INTO ACCOUNT_TBL(Account_Number,Customer_Name,Balance)
+ VALUES('1234567891','Mahesh',0);
+ INSERT INTO ACCOUNT_TBL(Account_Number,Customer_Name,Balance)
+ VALUES('1234567892','Dhanu',100);
+ INSERT INTO ACCOUNT_TBL(Account_Number,Customer_Name,Balance)
+ VALUES('1234567893','Sam',500);
+ 
+ CREATE TABLE TRANSFER_TBL(
+          Transaction_ID NUMBER(4) PRIMARY KEY,
+          Account_Number VARCHAR2(10),
+          Beneficiary_account_number VARCHAR2(10),
+          Transaction_Date DATE,
+          Transaction_Amount NUMBER(10,2)
+          CONSTRAINT Account_Number_fk FOREIGN KEY REFERENCES ACCOUNT_TBL(Account_Number),
+          CONSTRAINT Beneficiary_account_number_fk FOREIGN KEY REFERENCES ACCOUNT_TBL(Account_Number),
+          );
+          
+create sequence transactionId_seq
+START WITH 1000
+MINVALUE 1000
+MAXVALUE 9999
+INCREMENT BY 1;
